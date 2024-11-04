@@ -17,6 +17,7 @@ public sealed class Player : MonoBehaviour
     [SerializeField] private float _headRotationLimit = 70f;
     [SerializeField] private float _interactionDistance = 1f;
     [SerializeField] private LayerMask _interactableLayer;
+    [SerializeField] private Transform _itemAttachmentPoint;
 
     private CharacterController _controller;
     private Vector3 _velocityXZ;
@@ -26,6 +27,8 @@ public sealed class Player : MonoBehaviour
     private float _cameraTargetRotY;
 
     private IInteractable _targetInteractable;
+
+    public Item HoldingItem { get; private set; }
 
     private void Awake()
     {
@@ -41,6 +44,28 @@ public sealed class Player : MonoBehaviour
         UpdateRotation(input);
         UpdateInteractionTarget();
         UpdateInteraction(input);
+    }
+
+    public void PickUp(Item item)
+    {
+        if (HoldingItem != null) return;
+
+        HoldingItem = item;
+        HoldingItem.transform.SetParent(_itemAttachmentPoint, false);
+        HoldingItem.transform.localPosition = HoldingItem.HoldingOffset;
+        HoldingItem.transform.localRotation = HoldingItem.HoldingRotation;
+        item.OnPickedUp();
+    }
+
+    public Item ReleaseItem()
+    {
+        if (HoldingItem == null) throw new InvalidOperationException("Cannot release item when not holding any");
+
+        var item = HoldingItem;
+        HoldingItem.transform.SetParent(null, false);
+        HoldingItem = null;
+        item.OnReleased();
+        return item;
     }
 
     private PlayerInput GatherInput()
@@ -136,6 +161,7 @@ public sealed class Player : MonoBehaviour
     {
         if (_targetInteractable == null) return;
         if (!input.WantsInteract) return;
+        if (!_targetInteractable.IsAvaliable(this)) return;
 
         _targetInteractable.Interact(this);
     }

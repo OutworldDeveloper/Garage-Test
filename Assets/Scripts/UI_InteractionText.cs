@@ -15,17 +15,18 @@ public sealed class UI_InteractionText : MonoBehaviour
 
     private void OnEnable()
     {
+        Clear();
         _player.InteractionTargetChanged += OnInteractionTargetChanged;
-        _player.InteractionTargetLost += OnInteractionTargetLost;
+        _player.InteractionTargetLost += Clear;
     }
 
     private void OnDisable()
     {
         _player.InteractionTargetChanged -= OnInteractionTargetChanged;
-        _player.InteractionTargetLost -= OnInteractionTargetLost;
+        _player.InteractionTargetLost -= Clear;
     }
 
-    private void OnInteractionTargetLost()
+    private void Clear()
     {
         _crosshair.color = Color.white;
         _interactionLabel.gameObject.SetActive(false);
@@ -33,6 +34,8 @@ public sealed class UI_InteractionText : MonoBehaviour
 
     private void OnInteractionTargetChanged(IInteractable interactable)
     {
+        if (!interactable.IsAvaliable(_player)) return;
+
         _crosshair.color = _crosshairInteractionColor;
         _interactionLabel.gameObject.SetActive(true);
         _interactionLabel.text = interactable.GetInteractionText();
