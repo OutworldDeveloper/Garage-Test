@@ -256,6 +256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 3
+  _carryingHeavyItemSpeed: 1.7
   _acceleration: 25
   _mouseSensitivity: 2
   _head: {fileID: 4622959081103537674}

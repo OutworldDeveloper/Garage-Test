@@ -114,7 +114,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 894dfaefcbc517649ab843fe6c0b7aaf,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5951
+      value: 1.5632
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 894dfaefcbc517649ab843fe6c0b7aaf,
         type: 3}
@@ -219,7 +219,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd4d47c29b459c44d8a2aee154553f04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _displayName: Painting
+  <DisplayName>k__BackingField: Painting
+  <IsHeavy>k__BackingField: 0
   <HoldingOffset>k__BackingField: {x: 0, y: -0.215, z: 0.48}
   <HoldingRotation>k__BackingField: {x: -0.28401536, y: 0, z: 0, w: 0.95881975}
 --- !u!4 &7868287171011363667 stripped

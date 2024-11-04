@@ -109,7 +109,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7741167053433123418}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.277, y: 1.0517, z: 4.512}
   m_LocalScale: {x: 0.79494, y: 0.79494, z: 0.79494}
   m_ConstrainProportionsScale: 0
@@ -150,6 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd4d47c29b459c44d8a2aee154553f04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _displayName: Rope
+  <DisplayName>k__BackingField: Rope
+  <IsHeavy>k__BackingField: 0
   <HoldingOffset>k__BackingField: {x: 0, y: -0.23, z: 0.4}
   <HoldingRotation>k__BackingField: {x: -0.2419219, y: 0, z: 0, w: 0.9702957}

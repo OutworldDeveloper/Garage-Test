@@ -16,7 +16,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 1619b01e27df06148a6c42efa84a90af,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.053
+      value: 1.043
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1619b01e27df06148a6c42efa84a90af,
         type: 3}
@@ -120,6 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd4d47c29b459c44d8a2aee154553f04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _displayName: Coin
+  <DisplayName>k__BackingField: Coin
+  <IsHeavy>k__BackingField: 0
   <HoldingOffset>k__BackingField: {x: 0, y: -0.23, z: 0.4}
   <HoldingRotation>k__BackingField: {x: -0.38268346, y: 0, z: 0, w: 0.9238795}

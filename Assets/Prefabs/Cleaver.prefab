@@ -99,7 +99,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 288886b99b28cc5489f596c1bb0c172a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.0428
+      value: 1.0374
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 288886b99b28cc5489f596c1bb0c172a,
         type: 3}
@@ -210,7 +210,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd4d47c29b459c44d8a2aee154553f04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _displayName: Cleaver
+  <DisplayName>k__BackingField: Cleaver
+  <IsHeavy>k__BackingField: 0
   <HoldingOffset>k__BackingField: {x: 0.0398, y: -0.13, z: 0.39}
   <HoldingRotation>k__BackingField: {x: -0.27384225, y: -0.6089721, z: 0.57763827,
     w: 0.46957153}

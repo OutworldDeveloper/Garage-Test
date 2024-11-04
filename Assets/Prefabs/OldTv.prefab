@@ -135,7 +135,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd4d47c29b459c44d8a2aee154553f04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _displayName: TV
+  <DisplayName>k__BackingField: TV
+  <IsHeavy>k__BackingField: 1
   <HoldingOffset>k__BackingField: {x: 0, y: -0.48, z: 0.5}
   <HoldingRotation>k__BackingField: {x: 0.025286715, y: -0.99328125, z: -0.006998757,
     w: 0.11271193}

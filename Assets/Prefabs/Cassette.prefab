@@ -130,7 +130,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: afb9d58d000378144a38c03f7c4dc14a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.064
+      value: 1.0434
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: afb9d58d000378144a38c03f7c4dc14a,
         type: 3}
@@ -245,7 +245,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd4d47c29b459c44d8a2aee154553f04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _displayName: Cassette
+  <DisplayName>k__BackingField: Cassette
+  <IsHeavy>k__BackingField: 0
   <HoldingOffset>k__BackingField: {x: 0, y: -0.23, z: 0.4}
   <HoldingRotation>k__BackingField: {x: 0.3826835, y: 0, z: 0, w: -0.9238795}
 --- !u!4 &6673880621414339292 stripped

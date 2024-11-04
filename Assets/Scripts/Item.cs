@@ -5,7 +5,8 @@ using UnityEngine;
 public class Item : MonoBehaviour, IInteractable
 {
 
-    [SerializeField] private string _displayName;
+    [field: SerializeField] public string DisplayName { get; private set; }
+    [field: SerializeField] public bool IsHeavy { get; private set; }
     [field: SerializeField] public Vector3 HoldingOffset { get; private set; }
     [field: SerializeField] public Quaternion HoldingRotation { get; private set; }
 
@@ -18,7 +19,7 @@ public class Item : MonoBehaviour, IInteractable
 
     public string GetInteractionText()
     {
-        return $"Pick up {_displayName}";
+        return $"Pick up {DisplayName}";
     }
 
     public bool IsAvaliable(Player player)

@@ -11,6 +11,7 @@ public sealed class Player : MonoBehaviour
     public event Action InteractionTargetLost;
 
     [SerializeField] private float _speed = 2f;
+    [SerializeField] private float _carryingHeavyItemSpeed = 1.3f;
     [SerializeField] private float _acceleration = 25f;
     [SerializeField] private float _mouseSensitivity = 1f;
     [SerializeField] private Transform _head;
@@ -91,7 +92,7 @@ public sealed class Player : MonoBehaviour
 
     private void UpdateMovement(PlayerInput input)
     {
-        Vector3 desiredVelocity = transform.TransformDirection(input.MoveDirection) * _speed;
+        Vector3 desiredVelocity = transform.TransformDirection(input.MoveDirection) * GetCurrentSpeed();
 
         _velocityXZ = Vector3.MoveTowards(_velocityXZ, desiredVelocity, _acceleration * Time.deltaTime);
 
@@ -114,6 +115,14 @@ public sealed class Player : MonoBehaviour
         finalMove *= Time.deltaTime;
 
         _controller.Move(finalMove);
+    }
+
+    private float GetCurrentSpeed()
+    {
+        if (HoldingItem != null && HoldingItem.IsHeavy)
+            return _carryingHeavyItemSpeed;
+
+        return _speed;
     }
 
     private void UpdateRotation(PlayerInput input)

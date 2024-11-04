@@ -147,7 +147,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd4d47c29b459c44d8a2aee154553f04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _displayName: Cage
+  <DisplayName>k__BackingField: Cage
+  <IsHeavy>k__BackingField: 0
   <HoldingOffset>k__BackingField: {x: 0, y: -0.34, z: 0.52}
   <HoldingRotation>k__BackingField: {x: 0.0059758043, y: 0.00194108, z: 0.3089279,
     w: -0.9510647}
