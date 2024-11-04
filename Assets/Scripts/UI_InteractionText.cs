@@ -34,7 +34,11 @@ public sealed class UI_InteractionText : MonoBehaviour
 
     private void OnInteractionTargetChanged(IInteractable interactable)
     {
-        if (!interactable.IsAvaliable(_player)) return;
+        if (!interactable.IsAvaliable(_player))
+        {
+            Clear();
+            return;
+        }
 
         _crosshair.color = _crosshairInteractionColor;
         _interactionLabel.gameObject.SetActive(true);

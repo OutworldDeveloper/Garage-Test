@@ -164,6 +164,7 @@ public sealed class Player : MonoBehaviour
         if (!_targetInteractable.IsAvaliable(this)) return;
 
         _targetInteractable.Interact(this);
+        InteractionTargetChanged?.Invoke(_targetInteractable);
     }
 
     private struct PlayerInput
