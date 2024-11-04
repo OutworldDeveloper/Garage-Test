@@ -8,7 +8,7 @@ public sealed class CarLuggage : MonoBehaviour, IInteractable
 
     public event Action<Item> ItemPlaced;
 
-    [SerializeField] private Transform[] _points;
+    [SerializeField] private List<Transform> _points;
 
     public int ItemsCount { get; private set; }
 
@@ -25,8 +25,10 @@ public sealed class CarLuggage : MonoBehaviour, IInteractable
     {
         var item = player.ReleaseItem();
         item.OnPickedUp();
-        item.transform.position = _points[ItemsCount].transform.position;
-        item.transform.rotation = _points[ItemsCount].transform.rotation;
+
+        int pointIndex = Mathf.Min(_points.Count - 1, ItemsCount);
+        item.transform.position = _points[pointIndex].transform.position;
+        item.transform.rotation = _points[pointIndex].transform.rotation;
         ItemsCount++;
         ItemPlaced?.Invoke(item);
     }

@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Door
-  m_Shader: {fileID: -6465566751694194690, guid: 5728547381d0ba44da03e2e0ce33d917,
+  m_Shader: {fileID: -6465566751694194690, guid: 97189f7c71cb60846aa2800b80412308,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0

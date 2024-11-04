@@ -11,6 +11,7 @@ public sealed class UI_InteractionText : MonoBehaviour
     [SerializeField] private Player _player;
     [SerializeField] private TextMeshProUGUI _interactionLabel;
     [SerializeField] private Image _crosshair;
+    [SerializeField] private Color _crosshairBseColor;
     [SerializeField] private Color _crosshairInteractionColor;
 
     private void OnEnable()
@@ -28,7 +29,7 @@ public sealed class UI_InteractionText : MonoBehaviour
 
     private void Clear()
     {
-        _crosshair.color = Color.white;
+        _crosshair.color = _crosshairBseColor;
         _interactionLabel.gameObject.SetActive(false);
     }
 
@@ -42,6 +43,6 @@ public sealed class UI_InteractionText : MonoBehaviour
 
         _crosshair.color = _crosshairInteractionColor;
         _interactionLabel.gameObject.SetActive(true);
-        _interactionLabel.text = interactable.GetInteractionText();
+        _interactionLabel.text = $"[E] {interactable.GetInteractionText()}";
     }
 }
