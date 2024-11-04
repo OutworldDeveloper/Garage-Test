@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,11 +7,16 @@ using UnityEngine;
 public sealed class Player : MonoBehaviour
 {
 
+    public event Action<IInteractable> InteractionTargetChanged;
+    public event Action InteractionTargetLost;
+
     [SerializeField] private float _speed = 2f;
     [SerializeField] private float _acceleration = 25f;
     [SerializeField] private float _mouseSensitivity = 1f;
     [SerializeField] private Transform _head;
     [SerializeField] private float _headRotationLimit = 70f;
+    [SerializeField] private float _interactionDistance = 1f;
+    [SerializeField] private LayerMask _interactableLayer;
 
     private CharacterController _controller;
     private Vector3 _velocityXZ;
@@ -19,9 +25,13 @@ public sealed class Player : MonoBehaviour
     private float _cameraTargetRotX;
     private float _cameraTargetRotY;
 
+    private IInteractable _targetInteractable;
+
     private void Awake()
     {
         _controller = GetComponent<CharacterController>();
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     private void Update()
@@ -29,6 +39,8 @@ public sealed class Player : MonoBehaviour
         var input = GatherInput();
         UpdateMovement(input);
         UpdateRotation(input);
+        UpdateInteractionTarget();
+        UpdateInteraction(input);
     }
 
     private PlayerInput GatherInput()
@@ -46,6 +58,8 @@ public sealed class Player : MonoBehaviour
             z = Input.GetKey(KeyCode.W) ? 1 : Input.GetKey(KeyCode.S) ? -1 : 0,
             x = Input.GetKey(KeyCode.D) ? 1 : Input.GetKey(KeyCode.A) ? -1 : 0
         }.normalized;
+
+        input.WantsInteract = Input.GetKey(KeyCode.E);
 
         return input;
     }
@@ -88,10 +102,50 @@ public sealed class Player : MonoBehaviour
         _head.localEulerAngles = new Vector3(_cameraTargetRotX, 0f, 0f);
     }
 
-    private struct PlayerInput 
+    private void UpdateInteractionTarget()
+    {
+        Ray ray = new Ray(_head.transform.position, _head.transform.forward);
+
+        if (!Physics.Raycast(ray, out RaycastHit hit, _interactionDistance, _interactableLayer))
+        {
+            ClearTargetInteractable();
+            return;
+        }
+
+        if (!hit.transform.TryGetComponent(out IInteractable interactable))
+        {
+            ClearTargetInteractable();
+            return;
+        }
+
+        if (interactable == _targetInteractable) return;
+
+        _targetInteractable = interactable;
+        InteractionTargetChanged(interactable);
+    }
+
+    private void ClearTargetInteractable()
+    {
+        bool wasNull = _targetInteractable == null; 
+        _targetInteractable = null;
+        if (wasNull == false)
+            InteractionTargetLost?.Invoke();
+    }
+
+    private void UpdateInteraction(PlayerInput input)
+    {
+        if (_targetInteractable == null) return;
+        if (!input.WantsInteract) return;
+
+        _targetInteractable.Interact(this);
+    }
+
+    private struct PlayerInput
     {
         public Vector3 MoveDirection;
         public Vector2 Mouse;
+        public bool WantsInteract;
+
     }
 
 }
